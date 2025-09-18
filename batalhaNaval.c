@@ -2,10 +2,6 @@
 
 #define Navio 3
 
-// Desafio Batalha Naval - MateCheck
-// Este código inicial serve como base para o desenvolvimento do sistema de Batalha Naval.
-// Siga os comentários para implementar cada parte do desafio.
-
 int main(){
 
     int tabuleiro[10][10]={
@@ -20,7 +16,22 @@ int main(){
         {0,0,0,0,0,0,0,0,0,0},
         {0,0,0,0,0,0,0,0,0,0}
     };
-    
+    int cone[3][5]={
+        {0,0,1,0,0},
+        {0,1,1,1,0},
+        {1,1,1,1,1}
+    };
+    int octo[3][5]={
+        {0,0,1,0,0},
+        {0,1,1,1,0},
+        {0,0,1,0,0}
+    };
+    int cruz[3][5]={
+        {0,0,1,0,0},
+        {1,1,1,1,1},
+        {0,0,1,0,0}
+    };
+
     //Valores das Posições dos navios
     const int linhaVertical = 2;
     const int colunaVertical = 1;
@@ -28,11 +39,20 @@ int main(){
     const int linhaHorizontal = 5;
     const int colunaHorinzontal = 7;
 
-    const int linhaDiagonal1 = 9;
+    const int linhaDiagonal1 = 8;
     const int colunaDiagonal1 = 0;
 
     const int linhaDiagonal2 = 4;
     const int colunaDiagonal2 = 6;
+
+    const int linhaCone=7;
+    const int colunaCone=2;
+
+    const int linhaOcto=5;
+    const int colunaOcto=5;
+
+    const int linhaCruz=0;
+    const int colunaCruz=3;
 
     //validação do tamanho
     if(linhaVertical + Navio <=10){
@@ -117,6 +137,23 @@ int main(){
         return 1;
     }
 
+    for(int i=0;i<3;i++){
+        for(int j=0;j<5;j++){
+            tabuleiro[linhaCone+i][colunaCone+j]=cone[i][j];
+        }
+    }
+    for(int i=0;i<3;i++){
+        for(int j=0;j<5;j++){
+            tabuleiro[linhaCruz+i][colunaCruz+j]=cruz[i][j];
+        }
+    }
+    for(int i=0;i<3;i++){
+        for(int j=0;j<5;j++){
+            tabuleiro[linhaOcto+i][colunaOcto+j]=octo[i][j];
+        }
+    }
+
+
     //Printf da matriz toda
     for (int i = 0; i < 10; i++) {
         for (int j = 0; j < 10; j++) {
@@ -124,32 +161,5 @@ int main(){
         }
         printf("\n");
     }
-    
-    // Nível Aventureiro - Expansão do Tabuleiro e Posicionamento Diagonal
-    // Sugestão: Expanda o tabuleiro para uma matriz 10x10.
-    // Sugestão: Posicione quatro navios no tabuleiro, incluindo dois na diagonal.
-    // Sugestão: Exiba o tabuleiro completo no console, mostrando 0 para posições vazias e 3 para posições ocupadas.
-
-    // Nível Mestre - Habilidades Especiais com Matrizes
-    // Sugestão: Crie matrizes para representar habilidades especiais como cone, cruz, e octaedro.
-    // Sugestão: Utilize estruturas de repetição aninhadas para preencher as áreas afetadas por essas habilidades no tabuleiro.
-    // Sugestão: Exiba o tabuleiro com as áreas afetadas, utilizando 0 para áreas não afetadas e 1 para áreas atingidas.
-
-    // Exemplos de exibição das habilidades:
-    // Exemplo para habilidade em cone:
-    // 0 0 1 0 0
-    // 0 1 1 1 0
-    // 1 1 1 1 1
-    
-    // Exemplo para habilidade em octaedro:
-    // 0 0 1 0 0
-    // 0 1 1 1 0
-    // 0 0 1 0 0
-
-    // Exemplo para habilidade em cruz:
-    // 0 0 1 0 0
-    // 1 1 1 1 1
-    // 0 0 1 0 0
-
     return 0;
 }
