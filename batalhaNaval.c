@@ -1,5 +1,7 @@
 #include <stdio.h>
 
+#define Navio 3
+
 // Desafio Batalha Naval - MateCheck
 // Este código inicial serve como base para o desenvolvimento do sistema de Batalha Naval.
 // Siga os comentários para implementar cada parte do desafio.
@@ -26,32 +28,36 @@ int main(){
     const int linhaHorizontal = 5;
     const int colunaHorinzontal = 7;
 
+    const int linhaDiagonal1 = 9;
+    const int colunaDiagonal1 = 0;
+
+    const int linhaDiagonal2 = 4;
+    const int colunaDiagonal2 = 6;
+
     //validação do tamanho
-    if(linhaVertical + 3 <=10){
+    if(linhaVertical + Navio <=10){
     //Vertical
-        for(int i=0; i < 3; i++){
-            tabuleiro[linhaVertical + i][colunaVertical]=3;
+        for(int i=0; i < Navio; i++){
+            tabuleiro[linhaVertical + i][colunaVertical] = Navio;
         }
     }else{
         printf("Dimensões do Navio Vertical inválidas\n");
         return 1;
     }
 
-    //Sobreposição dos Navio
-
-    if(colunaHorinzontal +3 <=10){
+    //Sobreposição dos Navio Horizontal
+    if(colunaHorinzontal + Navio <=10){
         int sobreposiçao = 0;
-        for(int i=0; i < 3; i++){
-            if(tabuleiro[linhaHorizontal][colunaHorinzontal+i] ==3){
+        for(int i=0; i < Navio; i++){
+            if(tabuleiro[linhaHorizontal][colunaHorinzontal + i] == Navio){
                 sobreposiçao = 1;
                 break;
             }
         }
-
         if(!sobreposiçao){
             //Horizontal
-            for(int i=0; i < 3; i++){
-                tabuleiro[linhaHorizontal][colunaHorinzontal + i]=3;
+            for(int i=0; i < Navio; i++){
+                tabuleiro[linhaHorizontal][colunaHorinzontal + i] = Navio;
             }
         }else{
             printf("Navios estão em colisão\n");
@@ -60,6 +66,54 @@ int main(){
        
     }else{
         printf("Dimensoes do Navio Horizontal inválidas\n ");
+        return 1;
+    }
+
+    //Sobreposição dos Navios Diagonal 1
+    if(colunaDiagonal1 + Navio <=10){
+        int sobreposiçao = 0;
+        for(int i=0; i < Navio; i++){
+            if(tabuleiro[linhaDiagonal1 - i][colunaDiagonal1 + i] == Navio){
+                sobreposiçao = 1;
+                break;
+            }
+        }
+        if(!sobreposiçao){
+            //Horizontal
+            for(int i=0; i < Navio; i++){
+                tabuleiro[linhaDiagonal1 - i][colunaDiagonal1 + i] = Navio;
+            }
+        }else{
+            printf("Navios estão em colisão\n");
+            return 1;
+        }
+       
+    }else{
+        printf("Dimensões do Navio Horizontal inválidas\n ");
+        return 1;
+    }
+
+    //Sobreposição dos Navios Diagonal 2
+    if(colunaDiagonal2 + Navio <=10){
+        int sobreposiçao = 0;
+        for(int i=0; i < Navio; i++){
+            if(tabuleiro[linhaDiagonal2 - i][colunaDiagonal2 + i] == Navio){
+                sobreposiçao = 1;
+                break;
+            }
+        }
+        if(!sobreposiçao){
+            //Horizontal
+            for(int i=0; i < Navio; i++){
+                tabuleiro[linhaDiagonal2 - i][colunaDiagonal2 + i] = Navio;
+            }
+        }else{
+            printf("Navios estão em colisão\n");
+            return 1;
+        }
+       
+    }else{
+        printf("Dimensões do Navio Horizontal inválidas\n ");
         return 1;
     }
 
